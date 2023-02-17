@@ -23,12 +23,22 @@
             if(playerSelection === computerSelection)
                 return "You Tie!"
             else if((playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "paper" && computerSelection === "rock"))
-                return "You Win! " + playerSelection + " Beats " + computerSelection + ".";
+                return `You Win! ${playerSelection} beats ${computerSelection}`;
+
             else
-                return "Computer Wins! " + computerSelection + " Beats " + playerSelection + ".";
+                return `Computer Wins! ${computerSelection} beats ${playerSelection}`;
         }
 
-        console.log(playRound("rock",getComputerChoice()));
+        function playGame(){
+            for(let i = 0; i < 5; i++){
+                let playerSelection = prompt("What is your choice");
+                let result = playRound(playerSelection, getComputerChoice());
+                console.log(result);
+                alert(result);
+            }
+        }
+
+        playGame();
     </script>
 </body>
 </html>
