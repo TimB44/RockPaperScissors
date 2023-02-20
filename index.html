@@ -7,7 +7,84 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>
+        Rock Paper Scissors
+    </h1>
+    <button data-t="Rock">
+        Rock
+    </button>
+    <button data-t="Paper">
+        Paper
+    </button>
+    <button data-t="Scissors">
+        Scissors
+    </button>
+    <div></div>
+    <span>Player Score: </span>
+    <div id="playerScore">0</div>
+    
+    <span>Computer Score: </span>
+    <div id="computerScore">0 </div>
+
+    <div>
+    </div>
     <script>
+        const paper = document.querySelectorAll('button');
+        console.log(paper);
+        paper.forEach(element => {
+            element.addEventListener('click', e =>{
+                const playerScore = document.getElementById("playerScore");
+                const computerScore = document.getElementById("computerScore");
+
+                const div = document.querySelector('div');
+                const result = playRound(`${element.getAttribute("data-t")}`, getComputerChoice());
+
+                if(result.substring(0, 7) === "You Win"){
+                    console.log("you won");
+                    console.log(playerScore);
+                    console.log(computerScore);
+                    if(parseInt(playerScore.textContent) < 4){
+                        console.log("got here W");
+                        div.textContent = result;
+                        playerScore.textContent = parseInt(playerScore.textContent) + 1;
+                    }
+                    else if(parseInt(playerScore.textContent) === 4){
+                        div.textContent = "You Win!"
+                        playerScore.textContent = parseInt(playerScore.textContent) + 1;
+                    }
+                    else{
+                        playerScore.textContent = 1;
+                        computerScore.textContent = 0;
+                        div.textContent = result;
+                    }
+                }
+                if(result.substring(0, 3) === "Com"){
+                    console.log("Computer won");
+                    console.log(playerScore);
+                    console.log(computerScore);
+
+                   if(parseInt(computerScore.textContent) < 4){
+                        console.log("got here L");
+                        
+                        div.textContent = result;
+                        computerScore.textContent =  parseInt(computerScore.textContent) + 1;
+                    }
+                    else if(parseInt(computerScore.textContent) === 4){
+                        div.textContent = "You Lose!"
+                        computerScore.textContent = parseInt(computerScore.textContent) + 1;
+                    }
+                    else{
+                        playerScore.textContent = 0;
+                        computerScore.textContent = 1;
+                        div.textContent = result;
+                    }
+                }
+                else
+                    div.textContent = result;
+            });
+            
+        });
+
         function getComputerChoice(){
             let choice = Math.floor(Math.random() * 3);
             if(choice === 0)
@@ -38,7 +115,7 @@
             }
         }
 
-        playGame();
+        // playGame();
     </script>
 </body>
 </html>
